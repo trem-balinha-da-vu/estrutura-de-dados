@@ -1,0 +1,7 @@
+{
+    "cmd": ["gcc", "-Wall",  "${file}","pilha.c","fila.c","lista.c", "-o", "${file_base_name}", "&&", "start", "cmd", "/c", "${file_base_name}.exe"],
+    "file_regex": "^(...*?):([0-9]*):?([0-9]*)",
+    "working_dir": "${file_path}",
+    "selector": "source.c",
+    "shell": true
+}
