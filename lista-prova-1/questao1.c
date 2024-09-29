@@ -30,7 +30,7 @@ int main()
 {
 	Lista * lista = inicializa();
 
-
+	preenche_lista(&lista, QTD_NOS, 3);
 
 	printf("Quantidade de nos adicionados: %d\n", conta_nos(lista));
 

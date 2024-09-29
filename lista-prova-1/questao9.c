@@ -48,9 +48,9 @@ int main(int argc, char const *argv[])
     Pilha *P1 = inicializa_pilha();
     Pilha *P2 = inicializa_pilha();
 
-    //push(&P1, 1);
-    //push(&P1, 3);
-    //push(&P1, 4);
+    push(&P1, 1);
+    push(&P1, 3);
+    push(&P1, 4);
 
     push(&P2, 1);
     push(&P2, 3);
