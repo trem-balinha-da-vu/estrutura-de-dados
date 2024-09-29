@@ -28,6 +28,8 @@ int pilha_vaziaC(PilhaC * topo);
 
 void libera_pilhaC(PilhaC *topo);
 
+void print_stackC(PilhaC * topo);
+
 
 
 

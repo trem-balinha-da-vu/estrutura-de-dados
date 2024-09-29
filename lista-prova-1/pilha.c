@@ -83,6 +83,28 @@ void libera_pilhaC(PilhaC *topo) {
     }
 }
 
+void print_stackC(PilhaC * topo)
+{
+	printf("\n");
+	PilhaC * aux = topo;
+	if(aux == NULL){ printf("pilha vazia.\n"); return;}
+	while(aux != NULL)
+	{
+		printf(" %c ", aux->caractere);
+		printf("|");
+		aux = aux->prox;
+	}
+	printf("\n");
+}
+
+
+
+
+
+
+
+
+
 
 
 
