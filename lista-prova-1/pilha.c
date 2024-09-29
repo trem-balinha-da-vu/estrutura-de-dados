@@ -166,3 +166,17 @@ void libera_pilha(Pilha *topo) {
         free(aux);        // Libera o nó atual
     }
 }
+
+void print_stack(Pilha * topo)
+{
+	printf("\n");
+	Pilha * aux = topo;
+	if(aux == NULL){ printf("pilha vazia.\n"); return;}
+	while(aux != NULL)
+	{
+		printf(" %d ", aux->info);
+		printf("|");
+		aux = aux->prox;
+	}
+	printf("\n");
+}

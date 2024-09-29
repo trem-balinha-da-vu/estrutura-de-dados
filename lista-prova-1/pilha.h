@@ -48,4 +48,6 @@ int pilha_vazia(Pilha * topo);
 
 void libera_pilha(Pilha *topo);
 
+void print_stack(Pilha * topo);
+
 #endif
