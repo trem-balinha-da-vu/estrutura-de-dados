@@ -77,6 +77,7 @@ int fila_vazia(FilaArv *fila) {
     return (fila == NULL);
 } 
 
+//busca em largura
 void bfs(ArvBinC *arvore) {
     if (arvore == NULL) return;
     
@@ -98,23 +99,6 @@ void bfs(ArvBinC *arvore) {
 //--------------------------------------------------------
 //--------------------------------------------------------
 
-void busca_em_largura_aux(ArvBin * arvore,Fila * fila)
-{
-	if(arvore == NULL) return;
-	
-	enqueue_ref(&fila, arvore->info);
-	printf("%d  ", front(fila));
-	dequeue_ref(&fila);
-	
-	busca_em_largura_aux(arvore->esq, fila);
-	busca_em_largura_aux(arvore->dir, fila);
-}
-void busca_em_largura(ArvBin * arvore)
-{
-	Fila * fila = NULL;
-	
-	busca_em_largura_aux(arvore, fila);
-}
 
 ArvBin * inicializa()
 {
