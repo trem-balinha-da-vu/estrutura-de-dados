@@ -100,9 +100,9 @@ int main()
 	
 	imprime(lista);
 	
-	printf("\n\tnovas listas dps de remover separar %d", 4);
+	printf("\n\tnovas listas dps de remover separar %d", 5);
 	
-	No * lista2 = separa_lista(&lista, 20);
+	No * lista2 = separa_lista(&lista, 5);
 	
 	printf("\nlista 1: ");
 	imprime(lista);

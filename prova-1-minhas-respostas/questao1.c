@@ -44,7 +44,7 @@ int front(Fila * front)
 }
 
 //função principal
-void remove_negativo(Fila ** F)
+void remove_negativo(Fila **F)
 {
 	Fila * fila_aux = NULL;// inicializei uma nova fila, que guardará os valores positivos.
 	Fila * aux = *F; // declarei uma variável auxiliar que recebe inicialmente o começo da fila e depois vai percorrê-la

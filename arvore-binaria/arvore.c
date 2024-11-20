@@ -44,10 +44,10 @@ FilaArv* enqueueC(FilaArv *fila, ArvBinC *no) {
     novo->prox = NULL;
     
     if (fila == NULL) {
-        return novo; // Retorna o novo nó como início da fila
+        return novo; // Retorna o novo nï¿½ como inï¿½cio da fila
     }
     
-    // Caso contrário, encontra o final da fila e adiciona o novo nó lá
+    // Caso contrï¿½rio, encontra o final da fila e adiciona o novo nï¿½ lï¿½
     FilaArv *temp = fila;
     while (temp->prox != NULL) {
         temp = temp->prox;
@@ -56,7 +56,7 @@ FilaArv* enqueueC(FilaArv *fila, ArvBinC *no) {
     return fila;
 }
 
-// Função para desenfileirar o nó da frente da fila
+// Funï¿½ï¿½o para desenfileirar o nï¿½ da frente da fila
 FilaArv* dequeueC(FilaArv *fila) {
     if (fila == NULL) return NULL;
     
@@ -66,13 +66,13 @@ FilaArv* dequeueC(FilaArv *fila) {
     return fila;
 }
 
-// Função para obter o primeiro nó da árvore na fila (front)
+// Funï¿½ï¿½o para obter o primeiro nï¿½ da ï¿½rvore na fila (front)
 ArvBinC* front(FilaArv *fila) {
     if (fila == NULL) return NULL;
     return fila->no_arvore;
 }
 
-// Função para verificar se a fila está vazia
+// Funï¿½ï¿½o para verificar se a fila estï¿½ vazia
 int fila_vazia(FilaArv *fila) {
     return (fila == NULL);
 } 
@@ -83,14 +83,14 @@ void bfs(ArvBinC *arvore) {
     
     FilaArv *fila = cria_fila();
     fila = enqueueC(fila, arvore); // Enfileira a raiz inicialmente
-    
+
     while (!fila_vazia(fila)) {
-        ArvBinC *no_atual = front(fila); // Obtém o nó atual (frente da fila)
-        fila = dequeueC(fila); // Remove o nó atual da fila
+        ArvBinC *no_atual = front(fila); // Obtï¿½m o nï¿½ atual (frente da fila)
+        fila = dequeueC(fila); // Remove o nï¿½ atual da fila
         
-        printf("%c ", no_atual->info); // Visita o nó atual
+        printf("%c ", no_atual->info); // Visita o nï¿½ atual
         
-        // Enfileira os filhos do nó atual, se existirem
+        // Enfileira os filhos do nï¿½ atual, se existirem
         if (no_atual->esq != NULL) fila = enqueueC(fila, no_atual->esq);
         if (no_atual->dir != NULL) fila = enqueueC(fila, no_atual->dir);
     }
@@ -169,7 +169,7 @@ ArvBin * cria_arvore_recursivo(ArvBin *arvore, int info)
 	return arvore;
 }
 
-//ver se está certo depois
+//ver se estï¿½ certo depois
 void proc_cria_arvore(ArvBin ** p_arvore, int info)
 {
 	if(*p_arvore == NULL)
@@ -231,7 +231,7 @@ void cria_arvore_iterativo( ArvBin** p_arvore, int info)
 	}
 }
 
-//imprime filhos da árvore
+//imprime filhos da ï¿½rvore
 void imprime_filhos(ArvBin * arvore)
 {
 	ArvBin * aux = arvore;
@@ -266,11 +266,11 @@ void imprime_filhos(ArvBin * arvore)
 	}
 }
 
-int altura(ArvBin *arvore) {
-	if (arvore == NULL) return 0;
-	int altura_esq = altura(arvore->esq);
-	int altura_dir = altura(arvore->dir);
-	return (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
+int altura(ArvBin *arv) {
+    if (arv == NULL) return -1; // ï¿½rvore vazia tem altura -1
+    int altura_esq = altura(arv->esq);
+    int altura_dir = altura(arv->dir);
+    return (altura_esq > altura_dir ? altura_esq : altura_dir) + 1;
 }
 
 int conta_graus(ArvBin *arvore) {
@@ -315,7 +315,7 @@ void libera_no(ArvBin **no_arvore)
 	libera_no(&((*no_arvore)->dir));
 	
 	free(*no_arvore);
-	*no_arvore = NULL; // Definir o ponteiro do nó como NULL após liberar
+	*no_arvore = NULL; // Definir o ponteiro do nï¿½ como NULL apï¿½s liberar
 }
 
 void libera_arvore(ArvBin **arvore)
@@ -323,12 +323,12 @@ void libera_arvore(ArvBin **arvore)
 	if (arvore == NULL || *arvore == NULL) return;
 	
 	libera_no(arvore);
-	*arvore = NULL; // Garantir que o ponteiro raiz fique NULL após liberar a árvore
+	*arvore = NULL; // Garantir que o ponteiro raiz fique NULL apï¿½s liberar a ï¿½rvore
 }
 
 int estah_vazia(ArvBin *arvore)
 {
-	//deu problema na alocação da árvore ou a árvore está vazia
+	//deu problema na alocaï¿½ï¿½o da ï¿½rvore ou a ï¿½rvore estï¿½ vazia
 	return arvore == NULL ? 1 : 0;
 }
 
@@ -342,6 +342,7 @@ ArvBin* encontra_subArv(ArvBin * arvore, int info)
 	else if (arvore->info > info) encontra_subArv(arvore->esq, info);
 
 }
+
 
 
 			

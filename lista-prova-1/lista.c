@@ -164,7 +164,6 @@ void imprime_lista(Lista * inicio)
 
 	while(aux != NULL)
 	{
-
 		printf("%d", aux->info);
 		if(aux->prox != NULL) printf(" | ");
 		aux = aux->prox;
