@@ -87,6 +87,7 @@ int busca_bin_recursivo(int *vet, int n, int inicio, int fim)
 			}
 		}
 	}
+	return -1;
 }
 
 
