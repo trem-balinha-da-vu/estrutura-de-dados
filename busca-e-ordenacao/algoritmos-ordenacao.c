@@ -75,19 +75,19 @@ Se o elemento à esquerda for maior que o da direita, troque-os.
 Após cada passagem pelo vetor, o maior elemento "borbulha" para sua posição correta no final.
 Repita o processo para os elementos restantes até que o vetor esteja ordenado.
 */
-void bubble_sort(int *vet, int tam)
-{
-	int i, j;
-	for(i = 0; i < tam - 1; i++)//numero de passagens
-	{
-		for(j = 0; j < tam - 1 - i; j++)//comparações em cada passagem
-		{
-			// Troca os elementos adjacentes
-			int temp = vet[j];
-			vet[j] = vet[j + 1];
-			vet[j + 1] = temp;
-		}
-	}
+void bubble_sort(int *vet, int tam) {
+    int i, j;
+
+    for (i = 0; i < tam - 1; i++) { // Número de passagens
+        for (j = 0; j < tam - 1 - i; j++) { // Comparações em cada passagem
+            if (vet[j] > vet[j + 1]) { // Verifica se é necessário trocar
+                // Troca os elementos
+                int temp = vet[j];
+                vet[j] = vet[j + 1];
+                vet[j + 1] = temp;
+            }
+        }
+    }
 }
 
 //ordenação por divisão e conquista: quick sort
