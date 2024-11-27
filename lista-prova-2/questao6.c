@@ -7,25 +7,6 @@ identificar todos os elementos dentro de um intervalo [a, b].
 	2. Caso nenhum elemento esteja dentro do intervalo, retorne "Sem elementos no intervalo".
 */
 
-int busca_binaria_consecutivos(int *vet, int n, int x) {
-    int inicio = 0, fim = n - 2; // Último par começa no índice n-2
-    while (inicio <= fim) {
-        int meio = (inicio + fim) / 2;
-        int soma = vet[meio] + vet[meio + 1];
-
-        if (soma == x) {
-            return meio; // Achou a soma exata
-        } else if (soma < x) {
-            inicio = meio + 1; // Procurar à direita
-        } else {
-            fim = meio - 1; // Procurar à esquerda
-        }
-    }
-
-    // Retorna o índice mais próximo
-    return inicio < n - 1 ? inicio : n - 2;
-}
-
 //dúvida: retornar seria retornar o sub-vetor com o intervalo, ou printar os valores?
 
 int busca_binaria_intervalo(int *vet, int n, int x) {
