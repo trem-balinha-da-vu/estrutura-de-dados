@@ -1,6 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "arvore-avl.h"
+
+
+/*
+3. Considere os vetores abaixo. Construa uma Árvore AVL a partir da sequência de inserção de
+seus elementos, seguindo rigorosamente as regras de balanceamento dessa estrutura. Para cada
+vetor:
+	1. Apresente a estrutura da árvore após todas as inserções, indicando os nós e o balanceamento
+de cada um deles.
+	2. Mostre o passo a passo de todas as rotações realizadas (simples ou duplas) para garantir o
+balanceamento.
+	3. Determine a altura final da árvore.
+Vetores a serem considerados:
+	• Vetor 1: 15, 10, 20, 5, 12, 18, 25
+	• Vetor 2: 30, 40, 20, 10, 25, 35, 45, 5
+*/
+
+
+typedef struct arv {
+    int info;
+    struct arv *esq;
+    struct arv *dir;
+} ArvAVL;
+
+//percurso em profundidade em-ordem (esquerda-raiz-direita)
+void busca_profundidade_inOrder(ArvAVL* raiz)
+{
+	if (raiz == NULL)
+	{
+		return;
+	}
+	
+	busca_profundidade_inOrder(raiz->esq);
+	printf("no %d  balanceamento %d\n", raiz->info, fator_balanceamento(raiz));
+	busca_profundidade_inOrder(raiz->dir);
+}
 
 ArvAVL* rotacao_direita(ArvAVL* y) {
     ArvAVL* x = y->esq;
@@ -77,61 +111,39 @@ ArvAVL* cria_arvore(ArvAVL * arv, int info) {
     return balancear(fb, arv);
 }
 
-ArvAVL* remover_no(ArvAVL* arv, int info) {
-    if (arv == NULL) {
-        return NULL; // No nao encontrado, nao faz nada
-    }
-
-    if (info < arv->info) {
-        arv->esq = remover_no(arv->esq, info);
-    } else if (info > arv->info) {
-        arv->dir = remover_no(arv->dir, info);
-    } else {//no encontrado
-        if (arv->esq == NULL && arv->dir == NULL) {
-            //caso 1: no folha
-            free(arv);
-            return NULL;
-        } else if (arv->esq == NULL || arv->dir == NULL) {
-            //caso 2: no com um filho
-            ArvAVL* temp = arv->esq ? arv->esq : arv->dir;
-            free(arv);
-            return temp;
-        } else {
-            //caso 3: no com dois filhos
-            //encontrar o sucessor in-order (menor valor na sub-arvore direita)
-            ArvAVL* sucessor = arv->dir;
-            while (sucessor->esq != NULL) {
-                sucessor = sucessor->esq;
-            }
-            //substituir o valor do no a ser removido pelo valor do sucessor
-            arv->info = sucessor->info;
-            //remover o sucessor in-order
-            arv->dir = remover_no(arv->dir, sucessor->info);
-        }
-    }
-
-    int fb = fator_balanceamento(arv);
-    
-    return balancear(fb, arv);
+int altura_arvore(ArvAVL *arv) {
+    if (arv == NULL) return 0; // Árvore vazia tem altura 0
+    int altura_esq = altura_arvore(arv->esq);
+    int altura_dir = altura_arvore(arv->dir);
+    return (altura_esq > altura_dir ? altura_esq : altura_dir) + 1; // Contar a raiz
 }
 
-void bsf_inOrder(ArvAVL* raiz) {
-    if (raiz == NULL) {
-        return;
-    }
-
-    bsf_inOrder(raiz->esq);
-    printf(" %d FB %d\n", raiz->info, fator_balanceamento(raiz));
-    bsf_inOrder(raiz->dir);
+int main()
+{
+	int vet1[] = {15, 10, 20, 5, 12, 18, 25}, tam1 = 7, vet2[] = {30, 40, 20, 10, 25, 35, 45, 5}, tam2 = 8;
+	
+	ArvAVL * arvore1 = NULL;
+	int i;
+	
+	for(i = 0; i < tam1; i++)
+	{
+		arvore1 = cria_arvore(arvore1, vet1[i]);
+	}
+	
+	printf("arvore 1: \n");
+	busca_profundidade_inOrder(arvore1);
+	printf("altura da arvore 1: %d\n\n", altura_arvore(arvore1));
+	
+	ArvAVL * arvore2 = NULL;
+	
+	for(i = 0; i < tam2; i++)
+	{
+		arvore2 = cria_arvore(arvore2, vet2[i]);
+	}
+	
+	printf("arvore 2: \n");
+	busca_profundidade_inOrder(arvore2);
+	printf("altura da arvore 2: %d\n\n", altura_arvore(arvore2));
+	
+	return 0;
 }
-
-void libera_arvore(ArvAVL* arv) {
-    if (arv != NULL) {
-        libera_arvore(arv->esq);
-        libera_arvore(arv->dir);
-        free(arv);
-    }
-}
-
-
-

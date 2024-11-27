@@ -102,6 +102,8 @@ void busca_largura(ArvBinC *arvore) {
         if (no_atual->esq != NULL) fila = enqueueC(fila, no_atual->esq);
         if (no_atual->dir != NULL) fila = enqueueC(fila, no_atual->dir);
     }
+    
+    free(fila);
 }
 
 //precurso em profundidade pre-ordem (raiz-esquerda-direita)
@@ -113,8 +115,8 @@ void busca_profundidade_preOrder(ArvBinC *raiz)
 	}
 	
 	printf("%c  ", raiz->info);
-	bsf_preOrder(raiz->esq);
-	bsf_preOrder(raiz->dir);
+	busca_profundidade_preOrder(raiz->esq);
+	busca_profundidade_preOrder(raiz->dir);
 }
 
 //percurso em profundidade em-ordem (esquerda-raiz-direita)
@@ -122,13 +124,12 @@ void busca_profundidade_inOrder(ArvBinC* raiz)
 {
 	if (raiz == NULL)
 	{
-		printf("arvore vazia.");
 		return;
 	}
 	
-	bsf_inOrder(raiz->esq);
+	busca_profundidade_inOrder(raiz->esq);
 	printf("%c  ", raiz->info);
-	bsf_inOrder(raiz->dir);
+	busca_profundidade_inOrder(raiz->dir);
 }
 
 //percurso em profundidade pos-ordem (esquerda-direita-raiz)
@@ -139,7 +140,7 @@ void busca_profundidade_posOrder(ArvBinC* raiz)
 		return;
 	}
 	
-	bsf_posOrder(raiz->esq);
-	bsf_posOrder(raiz->dir);
+	busca_profundidade_posOrder(raiz->esq);
+	busca_profundidade_posOrder(raiz->dir);
 	printf("%c  ", raiz->info);
 }
