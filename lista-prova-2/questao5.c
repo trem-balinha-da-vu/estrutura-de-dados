@@ -34,36 +34,38 @@ no vetor.
 */
 
 
-// Função de partição para o QuickSort
 int particiona(int *vet, int inicio, int fim) {
-    int meio = (inicio + fim) / 2;
-    int pivo = vet[meio];
-    int i = inicio, j;
+    int pivo = vet[inicio]; // O pivô é o primeiro elemento
+    int i = inicio + 1;
+    int j = fim;
 
-    // Troca o pivô com o último elemento
-    int temp = vet[meio];
-    vet[meio] = vet[fim];
-    vet[fim] = temp;
+    while (i <= j) {
+        // Move `i` para a direita enquanto os elementos forem menores ou iguais ao pivô
+        while (i <= fim && vet[i] <= pivo) {
+            i++;
+        }
 
-    for (j = inicio; j < fim; j++) {
-        if (vet[j] <= pivo) {
-            // Troca os elementos
-            temp = vet[i];
+        // Move `j` para a esquerda enquanto os elementos forem maiores que o pivô
+        while (j >= inicio && vet[j] > pivo) {
+            j--;
+        }
+
+        if (i < j) {
+            // Troca os elementos em `i` e `j`
+            int temp = vet[i];
             vet[i] = vet[j];
             vet[j] = temp;
-            i++;
         }
     }
 
-    // Coloca o pivô na posição correta
-    temp = vet[i];
-    vet[i] = vet[fim];
-    vet[fim] = temp;
+    // Troca o pivô com o elemento em `j`, colocando o pivô em sua posição correta
+    int temp = vet[inicio];
+    vet[inicio] = vet[j];
+    vet[j] = temp;
 
-    return i;
+    return j; // Retorna o índice do pivô
 }
 
-// Função de ordenação QuickSort
 void quick_sort(int *vet, int inicio, int fim) {
     if (inicio < fim) {
         int pivo = particiona(vet, inicio, fim);
@@ -71,6 +73,7 @@ void quick_sort(int *vet, int inicio, int fim) {
         quick_sort(vet, pivo + 1, fim);
     }
 }
+
 
 // Função que retorna os k menores elementos em ordem crescente
 int *k_primeiros(int *vet_desord, int n, int k) {

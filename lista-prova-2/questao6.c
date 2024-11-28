@@ -50,12 +50,32 @@ void identifica_intervalo_print(int *vet, int n, int a, int b) {
     printf("\n");
 }
 
+void busca_sequencial_intervalo(int *vet, int tam, int a, int b) {
+    int i;
+    int encontrou = 0;
+
+    for (i = 0; i < tam; i++) {
+        if (vet[i] >= a && vet[i] <= b) {
+            printf("%d ", vet[i]);
+            encontrou = 1;
+        } else if (vet[i] > b) {
+            // Como o vetor está ordenado, podemos interromper a busca ao passar do limite superior
+            break;
+        }
+    }
+
+    if (!encontrou) {
+        printf("Sem elementos no intervalo");
+    }
+    printf("\n");
+}
+
 int main() {
     int vet[] = {1, 3, 5, 8, 10, 11, 14};
     int n = sizeof(vet) / sizeof(vet[0]);
     int a = 5, b = 12;
 
-    identifica_intervalo_print(vet, n, a, b);
+    busca_sequencial_intervalo(vet, n, a, b);
 
     return 0;
 }
