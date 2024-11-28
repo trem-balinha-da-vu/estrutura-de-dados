@@ -338,8 +338,8 @@ ArvBin* encontra_subArv(ArvBin * arvore, int info)
 	
 	if(arvore->info == info) return arvore;
 	
-	if(arvore->info < info) encontra_subArv(arvore->dir, info);
-	else if (arvore->info > info) encontra_subArv(arvore->esq, info);
+	if(arvore->info < info) return encontra_subArv(arvore->dir, info);
+	else (arvore->info > info) return encontra_subArv(arvore->esq, info);
 
 }
 
